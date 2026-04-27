@@ -22,19 +22,40 @@ return {
   },
 
   -- Treesitter for proper markdown parsing
+  -- nvim 0.12+: uses main branch (rewrite, requires tree-sitter CLI)
+  -- nvim < 0.12: uses master branch (legacy configs API)
+  -- The two branches have different module structures, so the config splits.
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",        -- pin to the stable old branch
-    build = ":TSUpdate",
+    branch = vim.fn.has("nvim-0.12") == 1 and "main" or "master",
+    -- build runs after plugin files are installed; module is fully available here
+    build = function()
+      if vim.fn.has("nvim-0.12") == 1 then
+        require("nvim-treesitter").install({
+          "markdown", "markdown_inline", "lua", "vim", "vimdoc",
+        }):wait(300000)
+      else
+        vim.cmd("TSUpdate")
+      end
+    end,
     lazy = false,
     priority = 900,
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "markdown", "markdown_inline", "lua", "vim", "vimdoc" },
-        sync_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
+      if vim.fn.has("nvim-0.12") == 1 then
+        -- main branch: parsers installed by build; enable highlighting per-buffer
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = { "markdown", "markdown_inline", "lua", "vim", "vimdoc" },
+          callback = function(ev) vim.treesitter.start(ev.buf) end,
+        })
+      else
+        -- master branch: legacy configs API
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = { "markdown", "markdown_inline", "lua", "vim", "vimdoc" },
+          sync_install = true,
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+      end
     end,
   },
 

@@ -69,5 +69,5 @@ if g.neovide then
   g.neovide_floating_blur_amount_y = 4.0
   g.neovide_floating_shadow = true
   g.neovide_window_blurred = true       -- macOS only
-  g.neovide_transparency = 0.96
+  g.neovide_opacity = 0.96
 end

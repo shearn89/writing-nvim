@@ -17,6 +17,12 @@ regular nvim config — does not touch it.
 
 ## Install
 
+**Prerequisites (nvim 0.12+ only):** treesitter highlighting uses the `main` branch which requires the `tree-sitter` CLI:
+- macOS: `brew install tree-sitter`
+- Linux: `npm install -g tree-sitter-cli` or `cargo install tree-sitter-cli`
+
+On nvim < 0.12 the config falls back to the `master` branch automatically — no CLI needed.
+
 ```bash
 git clone <this-repo> ~/.config/writing-nvim
 # or just copy the files there
