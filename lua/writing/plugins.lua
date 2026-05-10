@@ -149,4 +149,34 @@ return {
     event = "InsertEnter",
     opts = {},
   },
+
+  -- Obsidian: edit an Obsidian vault from inside nvim
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    cmd = {
+      "Obsidian",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "Personal",
+          path = "~/repos/clawd/workspace/obsidian/Personal",
+        },
+      },
+      completion = {
+        nvim_cmp = false,
+        blink = false,
+        min_chars = 2,
+      },
+      picker = { name = "telescope.nvim" },
+      ui = { enable = false },  -- defer to render-markdown.nvim
+    },
+  },
 }
