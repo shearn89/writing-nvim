@@ -24,10 +24,9 @@ map("n", "<leader>m", "<cmd>RenderMarkdown toggle<CR>", { desc = "Toggle Markdow
 -- Toggle spell
 map("n", "<leader>s", "<cmd>set spell!<CR>", { desc = "Toggle spell" })
 
--- Word count
+-- Word count (excludes YAML frontmatter)
 map("n", "<leader>c", function()
-  local wc = vim.fn.wordcount()
-  print(string.format("Words: %d  Chars: %d", wc.words, wc.chars))
+  require("writing.wordcount").report()
 end, { desc = "Word count" })
 
 -- Quickly fix the previous spelling mistake without leaving insert

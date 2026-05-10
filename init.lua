@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("writing.options")
 require("writing.keymaps")
+require("writing.wordcount").setup()
 
 require("lazy").setup("writing.plugins", {
   change_detection = { notify = false },
