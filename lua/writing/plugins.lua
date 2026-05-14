@@ -177,6 +177,7 @@ return {
       },
       picker = { name = "telescope.nvim" },
       ui = { enable = false },  -- defer to render-markdown.nvim
+      legacy_commands = false,
     },
   },
 }
