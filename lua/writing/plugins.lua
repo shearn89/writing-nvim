@@ -167,7 +167,7 @@ return {
       workspaces = {
         {
           name = "Personal",
-          path = "~/repos/clawd/workspace/obsidian/Personal",
+          path = "~/repos/obsidian/Personal",
         },
       },
       completion = {
