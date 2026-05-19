@@ -34,3 +34,17 @@ vim.api.nvim_create_autocmd("FileType", {
     -- require("zen-mode").open()
   end,
 })
+
+-- Auto save on 10s of idle
+vim.api.nvim_create_augroup("AutoSave", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = "AutoSave",
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified and vim.bo.buftype == "" and vim.fn.expand("%") ~= "" then
+      vim.cmd("silent! write")
+    end
+  end,
+})
+
+vim.opt.updatetime = 10000  -- 10s
