@@ -21,6 +21,18 @@ return {
     end,
   },
 
+  { 'nvim-mini/mini.pick', version = false },
+
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      image = { enabled = true },
+    },
+  }
+
   -- Treesitter for proper markdown parsing
   -- nvim 0.12+: uses main branch (rewrite, requires tree-sitter CLI)
   -- nvim < 0.12: uses master branch (legacy configs API)
