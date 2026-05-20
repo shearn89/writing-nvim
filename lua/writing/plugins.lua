@@ -155,6 +155,20 @@ return {
     },
   },
 
+  -- Auto-save for markdown files with 1s debounce
+  {
+    "pocco81/auto-save.nvim",
+    ft = { "markdown" },
+    opts = {
+      enabled = true,
+      trigger_events = { "InsertLeave", "TextChanged" },
+      condition = function(buf)
+        return vim.bo[buf].filetype == "markdown"
+      end,
+      debounce_delay = 1000,
+    },
+  },
+
   -- Auto-pair quotes/brackets — handy for prose punctuation too
   {
     "windwp/nvim-autopairs",
