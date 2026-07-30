@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spelllang = "en_gb"
     vim.opt_local.conceallevel = 2
     -- Uncomment to auto-enter zen mode on every markdown open:
-    -- require("zen-mode").open()
+    require("zen-mode").open()
   end,
 })
 
